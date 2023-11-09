@@ -30,8 +30,8 @@ const getSinglePlayer = async (singlePlayerId) => {
 const renderAllPlayers = () => {
     const main = document.querySelector('main');
     const ol = document.createElement('ol');
-   
-   // -------------------------------------------------------------
+
+    // -------------------------------------------------------------
     /*Add Button */
     const form = document.createElement('form');
     const input = document.createElement('input');
@@ -39,23 +39,39 @@ const renderAllPlayers = () => {
     const button = document.createElement('button');
     form.appendChild(button);
     button.innerText = "Add Player Here"
-    
-    button.addEventListener('submit', (event) => {
-        // event.preventDefault();
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        console.log(input.value);
+
+        fetch(`${baseApiUrl}/players/`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                    name: input.value,
+                    breed: "husky",
+                    status: "field",
+                    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGADpFBWOHMu1eD0s2PNKr9trG7L9Tw8BUTQ&usqp=CAU"
+                
+            })
+        })
     });
 
 
-// --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
 
-    main.replaceChildren(form,ol);
-    
-   
+    main.replaceChildren(form, ol);
+
+
     state.allPlayers.forEach((currentPlayer) => {
-        
+
         const li = document.createElement('li');
         li.innerHTML = `<p id=${currentPlayer.id}>${currentPlayer.name}</p> <img id=${currentPlayer.id} src=${currentPlayer.imageUrl}> `
         li.setAttribute("style", "list-style-type: none; border: 2px solid black; margin: 5px; padding: 5px; width: fit-content;");
-        
+
         // console.log(currentPlayer);
         li.setAttribute('id', currentPlayer.id);
         ol.appendChild(li);
@@ -63,9 +79,9 @@ const renderAllPlayers = () => {
         // const liImage = document.querySelectorAll('img');
         // liImage.forEach((currentPlayerImage)=> {
         // currentPlayerImage.setAttribute("style", "width: 300px;")
-    // })
+        // })
         ;
-        
+
         li.addEventListener("click", (event) => {
             // console.log(event.target.id)
             const singlePlayerId = event.target.id
@@ -87,8 +103,8 @@ const renderSinglePlayer = (singlePlayerData) => {
         <img src=${singlePlayerData.imageUrl}>
     `
     const image = document.querySelector('img');
-    image.setAttribute("style","width: 300px;")
-    
+    image.setAttribute("style", "width: 300px;")
+
     const button = document.createElement('button');
     button.innerText = "GO BACK PLEASE";
     main.appendChild(button);
