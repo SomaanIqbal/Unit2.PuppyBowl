@@ -31,30 +31,21 @@ const renderAllPlayers = () => {
     const main = document.querySelector('main');
     const ol = document.createElement('ol');
    
-    
+   // -------------------------------------------------------------
     /*Add Button */
     const form = document.createElement('form');
-    const addPlayerInput = document.createElement('input');
-    form.appendChild(addPlayerInput);
-    const addPlayerButton = document.createElement('button');
-    form.appendChild(addPlayerButton);
-    addPlayerButton.innerText = "Add Player Here";
-
-    addPlayerButton.addEventListener('click', () => {
-
-    });
-
-    /*Remove Button*/
-    const removePlayerInput = document.createElement('input');
-    form.appendChild(removePlayerInput);
-    const removePlayerButton = document.createElement('button');
-    form.appendChild(removePlayerButton);
-    removePlayerButton.innerText = "Remove Player Here";
+    const input = document.createElement('input');
+    form.appendChild(input);
+    const button = document.createElement('button');
+    form.appendChild(button);
+    button.innerText = "Add Player Here"
     
-    removePlayerButton.addEventListener('click', () => {
-
+    button.addEventListener('submit', (event) => {
+        // event.preventDefault();
     });
 
+
+// --------------------------------------------------------------------------------------------
 
     main.replaceChildren(form,ol);
     
@@ -69,10 +60,10 @@ const renderAllPlayers = () => {
         li.setAttribute('id', currentPlayer.id);
         ol.appendChild(li);
 
-        const liImage = document.querySelectorAll('img');
-        liImage.forEach((currentPlayerImage)=> {
-        currentPlayerImage.setAttribute("style", "width: 300px;")
-    })
+        // const liImage = document.querySelectorAll('img');
+        // liImage.forEach((currentPlayerImage)=> {
+        // currentPlayerImage.setAttribute("style", "width: 300px;")
+    // })
         ;
         
         li.addEventListener("click", (event) => {
@@ -87,13 +78,13 @@ const renderAllPlayers = () => {
 const renderSinglePlayer = (singlePlayerData) => {
     const main = document.querySelector('main');
     main.innerHTML = ` 
-    <p>Name: ${singlePlayerData.name}</p> 
-    <p>Breed: ${singlePlayerData.breed}</p>
-    <p>Id: ${singlePlayerData.id}</p>
-    <p>Status: ${singlePlayerData.status}</p>
-    <p>Created AT: ${singlePlayerData.createdAt}</p>
-    <p>UpdatedAt: ${singlePlayerData.updatedAt}</p>
-    <img src=${singlePlayerData.imageUrl}>
+        <p>Name: ${singlePlayerData.name}</p> 
+        <p>Breed: ${singlePlayerData.breed}</p>
+        <p>Id: ${singlePlayerData.id}</p>
+        <p>Status: ${singlePlayerData.status}</p>
+        <p>Created AT: ${singlePlayerData.createdAt}</p>
+        <p>UpdatedAt: ${singlePlayerData.updatedAt}</p>
+        <img src=${singlePlayerData.imageUrl}>
     `
     const image = document.querySelector('img');
     image.setAttribute("style","width: 300px;")
