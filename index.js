@@ -40,12 +40,12 @@ const renderAllPlayers = () => {
     form.appendChild(button);
     button.innerText = "Add Player Here"
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         console.log(input.value);
 
-        fetch(`${baseApiUrl}/players/`, {
+        await fetch(`${baseApiUrl}/players/`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -58,6 +58,7 @@ const renderAllPlayers = () => {
                 
             })
         })
+        getAllPlayers()
     });
 
 
